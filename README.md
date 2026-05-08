@@ -1,6 +1,6 @@
 # apex-examples
 
-Reference Apex classes that demonstrate how to set up test data for the [Kugamon Quote-to-Cash managed package](https://appexchange.salesforce.com/) (`kugo2p` namespace).
+Reference Apex classes that demonstrate how to set up test data for the Kugamon Quote to Cash managed package (`kugo2p` namespace).
 
 The first example, `KugamonTests`, originated as a public gist in 2017 and is now maintained here so partners and customers can clone it, deploy it to a sandbox or scratch org, and use it as a starting point for their own Apex test classes that interact with Kugamon objects.
 
