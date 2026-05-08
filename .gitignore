@@ -1,0 +1,26 @@
+# Salesforce DX
+.sfdx/
+.sf/
+.localdevserver/
+deploy-options.json
+
+# LWC / Aura local dev
+__tests__/
+**/__tests__/**
+
+# Editors / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+
+# Node (used by some sf plugins)
+node_modules/
+npm-debug.log*
+
+# OS junk
+Thumbs.db
