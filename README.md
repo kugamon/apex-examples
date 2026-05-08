@@ -1,27 +1,35 @@
 # apex-examples
 
-Reference Apex classes that demonstrate how to set up test data for the Kugamon Quote to Cash managed package (`kugo2p` namespace).
+Reference Apex classes that demonstrate how to set up test data for the [Kugamon Quote-to-Cash managed package](https://appexchange.salesforce.com/) (`kugo2p` namespace).
 
 The first example, `KugamonTests`, originated as a public gist in 2017 and is now maintained here so partners and customers can clone it, deploy it to a sandbox or scratch org, and use it as a starting point for their own Apex test classes that interact with Kugamon objects.
 
-## What this example covers
+## Scope
+
+This repository targets the **Kugamon Quote-to-Cash** managed package (`kugo2p` namespace). All examples are designed to run in any org with the Q2C package installed — no additional Kugamon add-ons are required.
+
+## What `KugamonTests` covers
 
 `KugamonTests` builds a complete Kugamon object graph in a single test data setup, including:
 
-- Kugamon Settings and the Standard / Custom Pricebooks
-- Products, Additional Product Definitions (APDs), and pricing tiers
+- Kugamon Settings, Warehouses, and the Standard / Custom Pricebooks
+- Products, Additional Product Definitions (APDs), and PricebookEntries
+- Tiered Pricing, Account Pricing, and Kit/Bundle Members
+- Configuration Groups and Configuration Options
 - Opportunities and Opportunity Line Items
 - Sales Quotes with Product, Service, Optional, and Accessory (ACC) lines
 - Sales Orders with Product, Service, and Accessory lines
-- Invoices, Invoice lines, Invoice ACCs, and the Order-Invoice Relationship
+- Invoices, Invoice Lines, Invoice ACCs, and the Order-Invoice Relationship
+- Assets, Quote and Order Line Groups, Favorites
+- Payment Settings, Processor Connections, and recurring Payment Profiles
 
-It is structured so individual `@isTest` methods can call `DataSetup()` and then assert against specific subgraphs.
+The class follows current Apex testing conventions — it uses the `Assert` class for assertions (introduced in API 57.0) and a lazy-static-getter pattern as a lightweight test data factory, so each `@isTest` method only realizes the records it actually needs.
 
 ## Prerequisites
 
 - A Salesforce org (sandbox, Developer Edition, or scratch org) with the **Kugamon Quote-to-Cash** managed package installed
 - [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli) (`sf`) v2 or later
-- API version 60.0 or higher in the target org
+- API version 64.0 or higher in the target org
 
 ## Quick start
 
@@ -55,6 +63,17 @@ apex-examples/
                 ├── KugamonTests.cls
                 └── KugamonTests.cls-meta.xml
 ```
+
+## Roadmap
+
+Future examples planned for this repository, all targeting the `kugo2p` Q2C package:
+
+- `KugamonTaxTests.cls` — Tax Locations, Tax Rates, and VAT setup
+- `KugamonShipmentTests.cls` — Shipments, Shipment Lines, and Carrier configuration
+- `KugamonPaymentTests.cls` — Payments and Applied Payment allocation
+- `KugamonInvoiceScheduleTests.cls` — Recurring invoice generation patterns
+
+If you'd find a particular example useful, open an issue and we'll prioritize it.
 
 ## Disclaimer
 
