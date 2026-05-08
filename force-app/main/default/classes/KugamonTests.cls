@@ -7,7 +7,7 @@ public class KugamonTests {
         // Switch to test context
         Test.startTest();
 
-        System.assertEquals(OrderProductLines.isEmpty(), false, 'Must have at least one Order Product Line.');
+        Assert.isFalse(OrderProductLines.isEmpty(), 'Must have at least one Order Product Line.');
 
         // Switch back to runtime context
         Test.stopTest();
@@ -45,33 +45,33 @@ public class KugamonTests {
         update standardPricebook;
 
 		// create Kugamon Settings
-        System.assertNotEquals(Settings.Id, null);        		
+        Assert.isNotNull(Settings.Id);        		
 
-		System.assertEquals(!Products.isEmpty(), true);
-		System.assertEquals(!APDs.isEmpty(), true);
+		Assert.isFalse(Products.isEmpty());
+		Assert.isFalse(APDs.isEmpty());
 
-		System.assertEquals(!tiers.isEmpty(), true);
+		Assert.isFalse(tiers.isEmpty());
 
 		// create oppty and line items
-		System.assertEquals(oppLineItems.isEmpty(), false);
+		Assert.isFalse(oppLineItems.isEmpty());
 
         // create sales quote, product and service lines
-        System.assertEquals(QuoteProductLines.isEmpty(), false);
-		System.assertEquals(QuoteServiceLines.isEmpty(), false);
-		System.assertEquals(QuoteOptionalLines.isEmpty(), false);
+        Assert.isFalse(QuoteProductLines.isEmpty());
+		Assert.isFalse(QuoteServiceLines.isEmpty());
+		Assert.isFalse(QuoteOptionalLines.isEmpty());
 
         // create sales order, product and service lines
-        System.assertEquals(OrderProductLines.isEmpty(), false);
-		System.assertEquals(OrderServiceLines.isEmpty(), false);
+        Assert.isFalse(OrderProductLines.isEmpty());
+		Assert.isFalse(OrderServiceLines.isEmpty());
 
 		// create Quote and Order Acc lines 
-		System.assertEquals(QuoteACCs.isEmpty(), false);
-		System.assertEquals(OrderACCs.isEmpty(), false);
+		Assert.isFalse(QuoteACCs.isEmpty());
+		Assert.isFalse(OrderACCs.isEmpty());
 		
 		// create invoice and its relationship
-		System.assertNotEquals(Invoice.Id, null);
-		System.assertEquals(InvoiceLines.isEmpty(), false);
-		System.assertEquals(InvoiceACCs.isEmpty(), false);
+		Assert.isNotNull(Invoice.Id);
+		Assert.isFalse(InvoiceLines.isEmpty());
+		Assert.isFalse(InvoiceACCs.isEmpty());
 		
 		kugo2p__OrderInvoiceRelationship__c oir = new kugo2p__OrderInvoiceRelationship__c(kugo2p__Invoice__c=Invoice.Id, kugo2p__SalesOrder__c=SalesOrder.Id);
 		insert oir;
@@ -154,8 +154,8 @@ public class KugamonTests {
 
                 insert Products;
 
-                System.assertEquals(APDs.size() > 0, true);
-                System.assertEquals(PricebookEntries.isEmpty(), false);
+                Assert.isTrue(APDs.size() > 0);
+                Assert.isFalse(PricebookEntries.isEmpty());
             }
             return Products;
         }
@@ -173,7 +173,7 @@ public class KugamonTests {
 
                 insert ConfigurationGroups;
 
-                System.assertEquals(ConfigurationGroups.size() > 0, true);
+                Assert.isTrue(ConfigurationGroups.size() > 0);
             }
             return ConfigurationGroups;
         }
@@ -190,7 +190,7 @@ public class KugamonTests {
 
                 insert ConfigurationOptions;
 
-                System.assertEquals(ConfigurationOptions.size() > 0, true);
+                Assert.isTrue(ConfigurationOptions.size() > 0);
             }
             return ConfigurationOptions;
         }
@@ -384,8 +384,6 @@ public class KugamonTests {
                 	new kugo2p__AccountPricing__c(kugo2p__Account__c = account.Id, kugo2p__ProductService__c = null, kugo2p__Price__c = null, kugo2p__Discount__c = 10.45, kugo2p__LockSalesPrice__c = true, kugo2p__LockLineDiscount__c = true, 
                 									kugo2p__FilterObject__c = 'Product', kugo2p__Operator__c = 'contains', kugo2p__FilterField__c = 'Name', kugo2p__FilterValue__c = Products[0].Name.left(4), kugo2p__Hide__c	= false)
                 };
-
-                // if (Util.HasSubscriptionAddOn) accountPricings[1].kugo2p__Contract__c = contracts[0].Id; 
                 
                 insert accountPricings;
             }
@@ -781,7 +779,7 @@ public class KugamonTests {
 	  																kugo2p__Enabled_Card_Types__c='Visa; Mastercard; Amex; Discover', kugo2p__Site_Checkout__c='Both', kugo2p__PDF_Checkout__c='Native', 
 	  																kugo2p__Tokenized_Card_Service_Enabled__c=true, kugo2p__Test_Mode__c=true,
 	  																kugo2p__Notification_Relay_Method__c='Visualforce', kugo2p__Relay_Id__c='kugo2p__PayPalRelay', 
-	  																kugo2p__Relay_Script__c='https://kugamon-customdoc-developer-edition.na15.force.com/kugo2p__PayPalRelay');
+	  																kugo2p__Relay_Script__c='https://example.salesforce.com/kugo2p__PayPalRelay');
 				insert ProcessorConnection;
 			}
 			return ProcessorConnection;
